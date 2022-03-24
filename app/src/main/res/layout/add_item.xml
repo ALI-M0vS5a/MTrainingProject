@@ -1,0 +1,149 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+
+    <data>
+
+    </data>
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.cardview.widget.CardView
+
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:cardBackgroundColor="@color/white"
+            app:cardCornerRadius="25dp"
+            app:cardElevation="3dp"
+            app:cardPreventCornerOverlap="true"
+            app:cardUseCompatPadding="true"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent">
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imageview"
+                    android:layout_width="96dp"
+                    android:layout_height="96dp"
+                    app:civ_border_width="1dp"
+                    app:civ_border_color="@color/blueberry"
+                    android:layout_margin="10dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@android:drawable/ic_input_add" />
+
+                <TextView
+                    android:id="@+id/textViewName"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    android:layout_marginBottom="40dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toEndOf="@+id/imageview"
+                    app:layout_constraintEnd_toStartOf="@+id/deleteCard"
+                    tools:text="FullName" />
+
+                <TextView
+                    android:id="@+id/textViewPrice"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/black"
+                    android:textSize="20sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toStartOf="@+id/deleteCard"
+                    app:layout_constraintStart_toEndOf="@+id/imageview"
+                    app:layout_constraintTop_toBottomOf="@+id/textViewName"
+                    tools:text="Price" />
+
+                <ImageView
+                    android:id="@+id/deleteCard"
+                    android:layout_width="75dp"
+                    android:layout_height="67dp"
+                    android:src="@drawable/ic_baseline_delete_forever_24"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
+
+        </androidx.cardview.widget.CardView>
+
+        <!--        <androidx.cardview.widget.CardView-->
+        <!--            android:layout_width="match_parent"-->
+        <!--            android:layout_height="410dp"-->
+        <!--            app:cardBackgroundColor="@color/white"-->
+        <!--            app:cardCornerRadius="25dp"-->
+        <!--            app:cardElevation="10dp"-->
+        <!--            app:cardPreventCornerOverlap="true"-->
+        <!--            app:cardUseCompatPadding="true"-->
+        <!--            app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--            app:layout_constraintEnd_toEndOf="parent"-->
+        <!--            app:layout_constraintHorizontal_bias="1.0"-->
+        <!--            app:layout_constraintStart_toStartOf="parent"-->
+        <!--            app:layout_constraintTop_toTopOf="parent"-->
+        <!--            app:layout_constraintVertical_bias="0.0">-->
+
+        <!--            <androidx.constraintlayout.widget.ConstraintLayout-->
+        <!--                android:layout_width="match_parent"-->
+        <!--                android:layout_height="match_parent">-->
+
+
+        <!--                <com.google.android.material.imageview.ShapeableImageView-->
+        <!--                    android:id="@+id/imageview"-->
+        <!--                    android:layout_width="300dp"-->
+        <!--                    android:layout_height="300dp"-->
+        <!--                    android:layout_margin="10dp"-->
+        <!--                    android:layout_marginTop="16dp"-->
+        <!--                    android:scaleType="fitXY"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent"-->
+        <!--                    app:shapeAppearanceOverlay="@style/roundedSquare"-->
+        <!--                    tools:srcCompat="@android:drawable/ic_input_add" />-->
+
+        <!--                <TextView-->
+        <!--                    android:id="@+id/textViewName"-->
+        <!--                    android:layout_width="320dp"-->
+        <!--                    android:layout_height="37dp"-->
+        <!--                    android:hint="carName"-->
+        <!--                    android:layout_margin="10dp"-->
+        <!--                    android:textColor="@color/black"-->
+        <!--                    android:textSize="30sp"-->
+        <!--                    android:textStyle="bold"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                    app:layout_constraintStart_toStartOf="parent"-->
+        <!--                    app:layout_constraintTop_toBottomOf="@+id/imageview" />-->
+
+        <!--                <ImageView-->
+        <!--                    android:id="@+id/deleteCard"-->
+        <!--                    android:layout_width="75dp"-->
+        <!--                    android:layout_height="67dp"-->
+        <!--                    android:src="@drawable/ic_baseline_delete_forever_24"-->
+        <!--                    app:layout_constraintBottom_toBottomOf="parent"-->
+        <!--                    app:layout_constraintEnd_toEndOf="parent"-->
+        <!--                    app:layout_constraintHorizontal_bias="0.554"-->
+        <!--                    app:layout_constraintStart_toEndOf="@+id/imageview"-->
+        <!--                    app:layout_constraintTop_toTopOf="parent"-->
+        <!--                    app:layout_constraintVertical_bias="0.302" />-->
+        <!--                -->
+        <!--            </androidx.constraintlayout.widget.ConstraintLayout>-->
+        <!--        </androidx.cardview.widget.CardView>-->
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+</layout>
+

@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item
+        android:id="@+id/overviewFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_home_24"
+        android:title="Overview" />
+
+    <item
+        android:id="@+id/addFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_directions_car_24"
+        android:title="This" />
+    <item
+        android:id="@+id/thatFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_handyman_24"
+        android:title="That" />
+    <item
+        android:id="@+id/otherFragment"
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_free_breakfast_24"
+        android:title="Other" />
+    <item
+        android:enabled="true"
+        android:icon="@drawable/ic_baseline_free_breakfast_24"
+        android:title="nothing" />
+</menu>
