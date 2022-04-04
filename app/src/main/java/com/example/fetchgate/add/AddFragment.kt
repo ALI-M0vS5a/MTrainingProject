@@ -2,32 +2,27 @@ package com.example.fetchgate.add
 
 import android.annotation.SuppressLint
 import android.os.Bundle
-import android.os.SystemClock
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Toast
-import androidx.core.os.bundleOf
-import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
+import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
-import com.example.fetchgate.R
 import com.example.fetchgate.adapter.AddRecyclerViewAdapter
+import com.example.fetchgate.databinding.AddItemBinding
 import com.example.fetchgate.databinding.FragmentAddBinding
-import com.example.fetchgate.databinding.FragmentCreateBinding
 import com.example.fetchgate.db.ItemDatabase
 import com.example.fetchgate.network.Add
+import com.google.android.material.snackbar.Snackbar
 
 
 class AddFragment : Fragment() {
 
-    var mLastClickTime = 0
     private lateinit var binding: FragmentAddBinding
-    private lateinit var binding2: FragmentCreateBinding
     private lateinit var addRecyclerViewAdapter: AddRecyclerViewAdapter
+    private lateinit var bindingAdd: AddItemBinding
 
 
     override fun onCreateView(
@@ -35,7 +30,7 @@ class AddFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View {
         binding = FragmentAddBinding.inflate(layoutInflater)
-        binding2 = FragmentCreateBinding.inflate(layoutInflater)
+        bindingAdd = AddItemBinding.inflate(layoutInflater)
 
         return binding.root
 
@@ -56,35 +51,41 @@ class AddFragment : Fragment() {
         binding.recyclerviewAdd.adapter = addRecyclerViewAdapter
         binding.recyclerviewAdd.layoutManager = LinearLayoutManager(this.context)
 
+        binding.recyclerviewAdd.apply {
+            val decoration = DividerItemDecoration(context,DividerItemDecoration.VERTICAL)
+            addItemDecoration(decoration)
+        }
+
         addRecyclerViewAdapter.setOnItemClickListener(object :
             AddRecyclerViewAdapter.OnItemClickListener {
-            override fun onDeleteIconClicked(add: Add) {
-                addViewModel.delete(add)
-                Toast.makeText(context, "${add.Name} Deleted ", Toast.LENGTH_LONG).show()
-            }
 
-            @SuppressLint( "SetTextI18n")
+            @SuppressLint("SetTextI18n")
             override fun onItemClicked(add: Add) {
-                val b1 = false.also { binding2.buttonCreate.isVisible = it }
-                val b2 = true.also { binding2.buttonUpdate.isVisible = it }
-                findNavController().navigate(AddFragmentDirections.actionAddFragmentToCreateFragment(b2,b1,add))
-
-            }
-
-            override fun onImageClicked(imageUrl: String) {
-                Log.d("Output", imageUrl)
-                if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
-                    return
-                }
-                mLastClickTime = SystemClock.elapsedRealtime().toInt()
-                Log.d("Output", "imageClicked2")
-                val bundle = bundleOf("clickImage2" to imageUrl)
 
                 findNavController().navigate(
-                    R.id.action_addFragment_to_customDialog,
-                    bundle
+                    AddFragmentDirections.actionAddFragmentToCreateFragment(
+                        false,
+                        add
+                    )
                 )
+            }
 
+            override fun onItemLongClick(add: Add) {
+                    val snackBar = Snackbar.make(
+                        view!!, add.Name,
+                        Snackbar.LENGTH_LONG
+
+                    ).setAction("Delete") {
+                            addViewModel.delete(add)
+                        if(view!=null) {
+                            val snackBar = Snackbar.make(
+                                view!!, "Item Deleted",
+                                Snackbar.LENGTH_LONG
+                            )
+                            snackBar.show()
+                        }
+                    }
+                    snackBar.show()
             }
         })
         binding.lifecycleOwner = this
@@ -92,8 +93,8 @@ class AddFragment : Fragment() {
 
     private fun initViewModel(): AddViewModel {
         val application = requireNotNull(this.activity).application
-        val dataSources = ItemDatabase.getInstance(application).itemDao
-        val viewModelFactory = AddViewModelFactory(dataSources, application)
+        ItemDatabase.getInstance(application).itemDao
+        val viewModelFactory = AddViewModelFactory(application)
         val addViewModel = ViewModelProvider(this, viewModelFactory)[AddViewModel::class.java]
 
 
@@ -110,13 +111,14 @@ class AddFragment : Fragment() {
 
     private fun navigate() {
         binding.fab.setOnClickListener {
-                val b2 = false.also { binding2.buttonUpdate.isVisible = it }
-                val b3 = true.also { binding2.buttonCreate.isVisible = it }
-                findNavController().navigate(AddFragmentDirections.actionAddFragmentToCreateFragment(b2,b3))
 
+            findNavController().navigate(
+                AddFragmentDirections.actionAddFragmentToCreateFragment(
+                    true
+                )
+            )
         }
     }
-
 }
 
 

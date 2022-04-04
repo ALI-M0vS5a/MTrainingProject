@@ -10,6 +10,7 @@ class Repository(private val itemDao: ItemDao) {
     suspend fun insert(add: Add){
         itemDao.insert(add)
     }
+
     suspend fun update(add: Add){
         itemDao.update(add)
     }

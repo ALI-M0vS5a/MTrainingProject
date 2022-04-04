@@ -14,14 +14,21 @@ fun bindImage(imgView: ImageView, imgUrl: String?) {
     }
 }
 
-fun bindImageString(imgView: ImageView, imgUrl: String?) {
-    imgUrl?.let {
+fun bindImageString(imgView: ImageView, imgUrl: String) {
+    imgUrl.let {
         Glide.with(imgView.context)
             .asBitmap()
             .load(it)
             .into(imgView)
     }
 }
+
+
+
+
+
+
+
 
 
 

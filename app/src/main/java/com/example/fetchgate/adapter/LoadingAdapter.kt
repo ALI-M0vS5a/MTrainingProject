@@ -8,14 +8,17 @@ import androidx.paging.LoadStateAdapter
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fetchgate.databinding.LoadingBinding
 
+
 class LoadingAdapter constructor(private val retry: () -> Unit) :
     LoadStateAdapter<LoadingAdapter.ViewHolder>() {
 
-    class ViewHolder(private val binding: LoadingBinding, retry: () -> Unit) :
-        RecyclerView.ViewHolder(binding.root) {
+    class ViewHolder(
+        private val binding: LoadingBinding,
+        private val retryCallback: () -> Unit
+    ) : RecyclerView.ViewHolder(binding.root) {
         init {
             binding.retryButton.setOnClickListener {
-                retry()
+                         retryCallback()
             }
         }
 
@@ -23,6 +26,8 @@ class LoadingAdapter constructor(private val retry: () -> Unit) :
             binding.apply {
                 progressbar.isVisible = loadState is LoadState.Loading
                 retryButton.isVisible = loadState is LoadState.Error
+                errorMsg.isVisible = loadState is LoadState.Error
+
             }
         }
 

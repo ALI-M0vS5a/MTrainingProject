@@ -1,7 +1,6 @@
 package com.example.fetchgate.adapter
 
 import android.view.LayoutInflater
-import android.view.View
 import android.view.ViewGroup
 import androidx.paging.PagingDataAdapter
 import androidx.recyclerview.widget.DiffUtil
@@ -49,20 +48,15 @@ class RecyclerViewPagingAdapter :
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
-        getItem(position)?.let {
-            holder.bind(it)
-            holder.itemView.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(p0: View?) {
-                    mListener.onItemClicked(it)
-
+        getItem(position)?.let { it1 ->
+            holder.bind(it1)
+            holder.itemView.setOnClickListener {
+                mListener.onItemClicked(it1)
+            }
+            getItem(position)?.let { it2 ->
+                holder.binding.imageview.setOnClickListener {
+                    mListener.onImageClicked(it2.owner.avatar_url)
                 }
-            })
-            getItem(position)?.let {
-                holder.binding.imageview.setOnClickListener(object : View.OnClickListener {
-                    override fun onClick(p0: View?) {
-                        mListener.onImageClicked(it.owner.avatar_url)
-                    }
-                })
             }
 
 

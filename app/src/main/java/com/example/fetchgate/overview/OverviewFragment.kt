@@ -1,12 +1,18 @@
+
 package com.example.fetchgate.overview
 
 import android.annotation.SuppressLint
+import android.content.Context
+import android.net.ConnectivityManager
+import android.net.NetworkCapabilities
+import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
@@ -20,12 +26,14 @@ import com.example.fetchgate.databinding.FragmentOverviewBinding
 import com.example.fetchgate.network.Result
 import kotlinx.coroutines.flow.collectLatest
 
+
 class OverviewFragment : Fragment() {
 
     var mLastClickTime = 0
     private lateinit var binding: FragmentOverviewBinding
     private lateinit var recyclerViewPagingAdapter: RecyclerViewPagingAdapter
     private lateinit var viewModel: OverviewViewModel
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -56,15 +64,20 @@ class OverviewFragment : Fragment() {
                 DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
             addItemDecoration(decoration)
             recyclerViewPagingAdapter = RecyclerViewPagingAdapter()
+
             adapter = recyclerViewPagingAdapter
                 .withLoadStateHeaderAndFooter(
+
                     header = LoadingAdapter {
                         recyclerViewPagingAdapter::retry
                     },
                     footer = LoadingAdapter {
-                        recyclerViewPagingAdapter::retry
+                        if(checkForInternet(requireContext())) run {
+                            recyclerViewPagingAdapter.retry()
+                        }else{
+                            Toast.makeText(requireContext(), "Internet Connection Problem!!", Toast.LENGTH_SHORT).show()
+                        }
                     }
-
                 )
 
             recyclerViewPagingAdapter.setOnItemClickListener(object :
@@ -90,8 +103,6 @@ class OverviewFragment : Fragment() {
                         bundle
                     )
                 }
-
-
             })
         }
     }
@@ -105,18 +116,42 @@ class OverviewFragment : Fragment() {
     private fun getListData() {
         lifecycleScope.launchWhenCreated {
             viewModel.getListData().collectLatest {
-
                 recyclerViewPagingAdapter.submitData(it)
                 binding.swipe.isRefreshing = false
             }
         }
     }
+
     private fun swipeRefresh() {
         val swiped = binding.swipe
         swiped.setOnRefreshListener {
-            recyclerViewPagingAdapter.refresh()
-
-
+            if (checkForInternet(this.requireContext())) {
+                recyclerViewPagingAdapter.refresh()
+            }else{
+                Toast.makeText(requireContext(), "Internet Connection Problem!!", Toast.LENGTH_SHORT).show()
+                binding.swipe.isRefreshing = false
+            }
         }
     }
-}
+
+        private fun checkForInternet(context: Context): Boolean {
+            val connectivityManager =
+                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
+            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
+                val network = connectivityManager.activeNetwork ?: return false
+                val activeNetwork =
+                    connectivityManager.getNetworkCapabilities(network) ?: return false
+                return when {
+                    activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
+                    activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
+                    else -> false
+                }
+            } else {
+                @Suppress("DEPRECATION")
+                val networkInfo = connectivityManager.activeNetworkInfo ?: return false
+                @Suppress("DEPRECATION")
+                return networkInfo.isConnected
+            }
+        }
+    }
+

@@ -63,17 +63,16 @@
         <action
             android:id="@+id/action_createFragment_to_addFragment"
             app:destination="@id/addFragment" />
+
         <argument
-            android:name="update"
-            app:argType="boolean" />
-        <argument
-            android:name="update2"
+            android:name="isFromAdd"
             app:argType="boolean" />
         <argument
             android:name="add"
             app:nullable="true"
             android:defaultValue="@null"
             app:argType="com.example.fetchgate.network.Add" />
+
 
     </fragment>
 </navigation>

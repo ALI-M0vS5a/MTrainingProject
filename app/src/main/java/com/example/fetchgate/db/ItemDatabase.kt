@@ -4,15 +4,17 @@ import android.content.Context
 import androidx.room.Database
 import androidx.room.Room
 import androidx.room.RoomDatabase
+import androidx.room.TypeConverters
 import com.example.fetchgate.network.Add
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 
 @Database(
     entities = [Add::class],
-    version = 3,
+    version = 20,
     exportSchema = false
 )
+@TypeConverters(com.example.fetchgate.utils.Converter::class)
 abstract class ItemDatabase : RoomDatabase() {
     abstract val itemDao: ItemDao
 
@@ -20,6 +22,8 @@ abstract class ItemDatabase : RoomDatabase() {
 
         @Volatile
         private var INSTANCE: ItemDatabase? = null
+
+
 
         @OptIn(InternalCoroutinesApi::class)
         fun getInstance(context: Context): ItemDatabase {

@@ -15,9 +15,8 @@ class AddRecyclerViewAdapter : RecyclerView.Adapter<AddRecyclerViewAdapter.AddVi
     private lateinit var mListener: OnItemClickListener
 
     interface OnItemClickListener {
-        fun onDeleteIconClicked(add: Add)
         fun onItemClicked(add: Add)
-        fun onImageClicked(imageUrl: String)
+        fun onItemLongClick(add: Add)
 
     }
 
@@ -29,7 +28,7 @@ class AddRecyclerViewAdapter : RecyclerView.Adapter<AddRecyclerViewAdapter.AddVi
         RecyclerView.ViewHolder(binding.root) {
         fun bind(add: Add) {
             binding.textViewName.text = add.Name
-            bindImageString(binding.imageview,add.image)
+            add.image?.random()?.let { bindImageString(binding.imageview, it) }
         }
     }
 
@@ -57,21 +56,18 @@ class AddRecyclerViewAdapter : RecyclerView.Adapter<AddRecyclerViewAdapter.AddVi
         holder: AddViewHolder, position: Int
     ) {
         holder.bind(adds[position])
-        getItemId(position).let {
-            holder.binding.deleteCard.setOnClickListener {
-                mListener.onDeleteIconClicked(adds[position])
 
-            }
-        }
         getItemId(position).let {
             holder.itemView.setOnClickListener {
                 mListener.onItemClicked(adds[position])
             }
 
         }
+
         getItemId(position).let {
-            holder.binding.imageview.setOnClickListener {
-                mListener.onImageClicked(adds[position].image)
+            holder.itemView.setOnLongClickListener {
+                mListener.onItemLongClick(adds[position])
+                return@setOnLongClickListener true
             }
         }
 

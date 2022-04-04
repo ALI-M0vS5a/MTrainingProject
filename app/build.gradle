@@ -35,6 +35,7 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+
 }
 
 dependencies {
@@ -97,4 +98,21 @@ dependencies {
     //Dexter
     implementation 'com.karumi:dexter:6.1.2'
     implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.10"
+
+
+    //noinspection GradleCompatible
+    implementation 'com.android.support:design:28.0.0'
+
+
+
+
+
+
+
+
+
+
+
+
+
 }

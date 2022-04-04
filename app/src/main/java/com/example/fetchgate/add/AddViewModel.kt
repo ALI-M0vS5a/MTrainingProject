@@ -1,15 +1,17 @@
 package com.example.fetchgate.add
 
 import android.app.Application
-import androidx.lifecycle.*
-import com.example.fetchgate.db.ItemDao
+import androidx.lifecycle.AndroidViewModel
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.viewModelScope
 import com.example.fetchgate.db.ItemDatabase
 import com.example.fetchgate.db.Repository
 import com.example.fetchgate.network.Add
-import kotlinx.coroutines.*
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
 
 
-class AddViewModel(val database: ItemDao, application: Application) :
+class AddViewModel(application: Application) :
     AndroidViewModel(application) {
 
     val allItem: LiveData<List<Add>>
@@ -35,6 +37,5 @@ class AddViewModel(val database: ItemDao, application: Application) :
         repository.insert(add)
 
     }
-
 
 }

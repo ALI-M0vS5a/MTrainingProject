@@ -9,7 +9,6 @@ import androidx.fragment.app.DialogFragment
 import com.example.fetchgate.R
 import com.example.fetchgate.databinding.DialogLayoutBinding
 import com.example.fetchgate.utils.bindImage
-import com.example.fetchgate.utils.bindImageString
 
 
 class CustomDialog : DialogFragment() {
@@ -35,9 +34,6 @@ class CustomDialog : DialogFragment() {
         val image = binding.imageviewDialog
         bindImage(image, receivedBundleImage.toString())
 
-        val receivedBundleImage2 = arguments?.getSerializable("clickImage2")
-        val image2 = binding.imageviewDialog2
-        bindImageString(image2,receivedBundleImage2.toString())
 
     }
 }

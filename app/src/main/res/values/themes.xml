@@ -19,12 +19,5 @@
         <item name="itemIconTint">@color/blueberry</item>
         <item name="itemTextColor">@color/blueberry</item>
     </style>
-<!--    <style name="roundedSquare">-->
-<!--        <item name="android:innerRadius">0dp</item>-->
-<!--        <item name="android:shape">ring</item>-->
-<!--        <item name="android:thicknessRatio">1.9</item>-->
-<!--        <item name="android:useLevel">false</item>-->
-
-<!--    </style>-->
 
 </resources>
