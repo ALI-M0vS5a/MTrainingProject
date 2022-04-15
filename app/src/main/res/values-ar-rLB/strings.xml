@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+
+    <string name="hello_blank_fragment">مرحبا أهلا وسهلا</string>
+    <string name="enter_name">أدخل الاسم</string>
+    <string name="enter_email">أدخل البريد الإلكتروني</string>
+    <string name="enter_phoneNumber">أدخل رقم الهاتف</string>
+    <string name="app_name">مشروع تدريب</string>
+    <string name="add">جمع</string>
+    <string name="retry">اعاده المحاوله</string>
+    <string name="captureImage">التقاط الصور</string>
+    <string name="selectImage">اختر صورة</string>
+    <string name="no_internet_connection">لا يوجد اتصال بالإنترنت</string>
+    <string name="overview">نظره عامه</string>
+    <string name="sale">بيع</string>
+    <string name="about">من نحن</string>
+    <string name="offers">العروض</string>
+    <string name="chat">الدردشة</string>
+</resources>

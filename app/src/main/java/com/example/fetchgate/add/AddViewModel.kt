@@ -1,6 +1,7 @@
 package com.example.fetchgate.add
 
 import android.app.Application
+import android.util.Log
 import androidx.lifecycle.AndroidViewModel
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.viewModelScope
@@ -38,4 +39,8 @@ class AddViewModel(application: Application) :
 
     }
 
+    override fun onCleared() {
+        super.onCleared()
+        Log.d("AddViewModel","AddViewModelDestroyed")
+    }
 }

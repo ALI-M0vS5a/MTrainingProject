@@ -15,6 +15,10 @@ data class Add(
     var id: Int = 0,
     @ColumnInfo(name = "name")
     val Name: String,
+    @ColumnInfo(name = "phone")
+    val Phone: String,
+    @ColumnInfo(name = "email")
+    val Email: String,
     @ColumnInfo(name = "image")
     val image: List<String>?
 

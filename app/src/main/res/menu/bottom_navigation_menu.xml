@@ -4,25 +4,25 @@
         android:id="@+id/overviewFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_home_24"
-        android:title="Overview" />
+        android:title="@string/overview" />
 
     <item
         android:id="@+id/addFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_directions_car_24"
-        android:title="This" />
+        android:title="@string/sale" />
     <item
         android:id="@+id/thatFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_handyman_24"
-        android:title="That" />
+        android:title="@string/about" />
     <item
         android:id="@+id/otherFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_free_breakfast_24"
-        android:title="Other" />
+        android:title="@string/offers" />
     <item
         android:enabled="true"
         android:icon="@drawable/ic_baseline_free_breakfast_24"
-        android:title="nothing" />
+        android:title="@string/chat" />
 </menu>

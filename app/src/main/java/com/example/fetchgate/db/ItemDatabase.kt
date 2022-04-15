@@ -11,7 +11,7 @@ import kotlinx.coroutines.internal.synchronized
 
 @Database(
     entities = [Add::class],
-    version = 20,
+    version = 21,
     exportSchema = false
 )
 @TypeConverters(com.example.fetchgate.utils.Converter::class)
@@ -22,7 +22,6 @@ abstract class ItemDatabase : RoomDatabase() {
 
         @Volatile
         private var INSTANCE: ItemDatabase? = null
-
 
 
         @OptIn(InternalCoroutinesApi::class)

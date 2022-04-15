@@ -32,3 +32,5 @@ fun bindImageString(imgView: ImageView, imgUrl: String) {
 
 
 
+
+

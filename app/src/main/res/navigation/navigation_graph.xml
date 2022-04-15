@@ -15,6 +15,7 @@
         <action
             android:id="@+id/action_overviewFragment_to_customDialog"
             app:destination="@id/customDialog" />
+
     </fragment>
     <fragment
         android:id="@+id/otherFragment"
@@ -39,9 +40,7 @@
         <action
             android:id="@+id/action_addFragment_to_createFragment2"
             app:destination="@id/createFragment" />
-        <!--        <argument-->
-<!--            android:name="add"-->
-<!--            app:argType="com.example.fetchgate.network.Add" />-->
+
     </fragment>
     <fragment
         android:id="@+id/detailFragment"

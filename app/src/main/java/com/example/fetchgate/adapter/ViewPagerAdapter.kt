@@ -8,6 +8,7 @@ import com.example.fetchgate.databinding.ItemViewPagerBinding
 import com.example.fetchgate.network.ViewPager
 import com.example.fetchgate.utils.bindImageString
 
+
 class ViewPagerAdapter(
     private val views: ArrayList<ViewPager>
 
@@ -24,7 +25,7 @@ class ViewPagerAdapter(
     }
 
     interface OnItemClickListener{
-        fun onLongClickedFromAdd(viewpager: ViewPager)
+        fun onLongClick(viewpager: ViewPager)
 
     }
 
@@ -40,12 +41,12 @@ class ViewPagerAdapter(
                 false
             )
         )
-
     }
 
+    @SuppressLint("NotifyDataSetChanged")
     fun updateViewPagerList(viewpager: ViewPager) {
         views.add(viewpager)
-        notifyItemInserted(views.size - 1)
+        notifyDataSetChanged()
 
     }
     @SuppressLint("NotifyDataSetChanged")
@@ -59,11 +60,10 @@ class ViewPagerAdapter(
         holder.bind(views[position])
         getItemId(position).let {
             holder.itemView.setOnLongClickListener {
-                mListener.onLongClickedFromAdd(views[position])
+                mListener.onLongClick(views[position])
                 return@setOnLongClickListener true
             }
         }
-
     }
 
     override fun getItemCount(): Int {

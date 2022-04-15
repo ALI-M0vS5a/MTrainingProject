@@ -1,5 +1,19 @@
 <resources>
-    <string name="app_name">Fetch&amp;Gate</string>
-    <!-- TODO: Remove or change this placeholder text -->
+    <string name="app_name">TrainingProject</string>
     <string name="hello_blank_fragment">Hello welcome</string>
+    <string name="enter_name">Enter name</string>
+    <string name="enter_phoneNumber">Enter phoneNumber</string>
+    <string name="enter_email">Enter email</string>
+    <string name="add">add</string>
+    <string name="captureImage">CaptureImage</string>
+    <string name="selectImage">SelectImage</string>
+    <string name="retry">retry</string>
+    <string name="no_internet_connection">No Internet Connection</string>
+    <string name="overview">Overview</string>
+    <string name="sale">Sale</string>
+    <string name="about">About</string>
+    <string name="offers">Offers</string>
+    <string name="chat">Chatting</string>
+    <string name="app_arabic_name" translatable="false">مشروع تدريب</string>
+    <string name="app_english_name" translatable="false">TrainingProject</string>
 </resources>

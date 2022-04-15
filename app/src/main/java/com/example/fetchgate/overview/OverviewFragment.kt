@@ -1,11 +1,6 @@
 
 package com.example.fetchgate.overview
 
-import android.annotation.SuppressLint
-import android.content.Context
-import android.net.ConnectivityManager
-import android.net.NetworkCapabilities
-import android.os.Build
 import android.os.Bundle
 import android.os.SystemClock
 import android.util.Log
@@ -45,7 +40,7 @@ class OverviewFragment : Fragment() {
         return binding.root
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -72,10 +67,14 @@ class OverviewFragment : Fragment() {
                         recyclerViewPagingAdapter::retry
                     },
                     footer = LoadingAdapter {
-                        if(checkForInternet(requireContext())) run {
+                        if (viewModel.checkForInternet(requireContext())) run {
                             recyclerViewPagingAdapter.retry()
-                        }else{
-                            Toast.makeText(requireContext(), "Internet Connection Problem!!", Toast.LENGTH_SHORT).show()
+                        } else {
+                            Toast.makeText(
+                                requireContext(),
+                                "Internet Connection Problem!!",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
                     }
                 )
@@ -84,12 +83,16 @@ class OverviewFragment : Fragment() {
                 RecyclerViewPagingAdapter.OnItemClickListener {
                 override fun onItemClicked(result: Result) {
 
-                    findNavController().navigate(
-                        OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(result)
-                    )
+                    try {
+                        findNavController().navigate(
+                            OverviewFragmentDirections.actionOverviewFragmentToDetailFragment(result)
+                        )
+                    } catch (e: Exception) {
+                        return
+                    }
                 }
 
-                @SuppressLint("InflateParams")
+
                 override fun onImageClicked(imageUrl: String) {
 
                     if (SystemClock.elapsedRealtime() - mLastClickTime < 1000) {
@@ -125,33 +128,19 @@ class OverviewFragment : Fragment() {
     private fun swipeRefresh() {
         val swiped = binding.swipe
         swiped.setOnRefreshListener {
-            if (checkForInternet(this.requireContext())) {
+            if (viewModel.checkForInternet(this.requireContext())) {
                 recyclerViewPagingAdapter.refresh()
-            }else{
-                Toast.makeText(requireContext(), "Internet Connection Problem!!", Toast.LENGTH_SHORT).show()
+            } else {
+                Toast.makeText(
+                    requireContext(),
+                    "Internet Connection Problem!!",
+                    Toast.LENGTH_SHORT
+                ).show()
                 binding.swipe.isRefreshing = false
             }
         }
     }
 
-        private fun checkForInternet(context: Context): Boolean {
-            val connectivityManager =
-                context.getSystemService(Context.CONNECTIVITY_SERVICE) as ConnectivityManager
-            if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
-                val network = connectivityManager.activeNetwork ?: return false
-                val activeNetwork =
-                    connectivityManager.getNetworkCapabilities(network) ?: return false
-                return when {
-                    activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_WIFI) -> true
-                    activeNetwork.hasTransport(NetworkCapabilities.TRANSPORT_CELLULAR) -> true
-                    else -> false
-                }
-            } else {
-                @Suppress("DEPRECATION")
-                val networkInfo = connectivityManager.activeNetworkInfo ?: return false
-                @Suppress("DEPRECATION")
-                return networkInfo.isConnected
-            }
-        }
-    }
+}
+
 

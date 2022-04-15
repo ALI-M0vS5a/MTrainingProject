@@ -32,9 +32,7 @@ class RecyclerViewPagingAdapter :
             bindImage(binding.imageview, data.owner.avatar_url)
 
         }
-
     }
-
 
     class ResultDiffUtil : DiffUtil.ItemCallback<Result>() {
         override fun areItemsTheSame(oldItem: Result, newItem: Result): Boolean {
@@ -44,7 +42,6 @@ class RecyclerViewPagingAdapter :
         override fun areContentsTheSame(oldItem: Result, newItem: Result): Boolean {
             return oldItem.id == newItem.id
         }
-
     }
 
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
@@ -58,10 +55,7 @@ class RecyclerViewPagingAdapter :
                     mListener.onImageClicked(it2.owner.avatar_url)
                 }
             }
-
-
         }
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
@@ -72,10 +66,7 @@ class RecyclerViewPagingAdapter :
                 false
             )
         )
-
     }
-
-
 }
 
 

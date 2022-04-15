@@ -27,6 +27,7 @@ android {
     }
     buildFeatures {
         dataBinding true
+        viewBinding true
     }
     compileOptions {
         sourceCompatibility JavaVersion.VERSION_1_8
@@ -60,8 +61,8 @@ dependencies {
     implementation 'androidx.lifecycle:lifecycle-runtime-ktx:2.4.1'
     implementation 'androidx.lifecycle:lifecycle-livedata-ktx:2.4.1'
     //Navigation
-    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.1'
-    implementation 'androidx.navigation:navigation-ui-ktx:2.4.1'
+    implementation 'androidx.navigation:navigation-fragment-ktx:2.4.2'
+    implementation 'androidx.navigation:navigation-ui-ktx:2.4.2'
     //Paging
     implementation 'androidx.paging:paging-runtime:3.1.1'
     implementation 'androidx.paging:paging-rxjava2-ktx:3.1.1'
@@ -73,8 +74,6 @@ dependencies {
     implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0'
     //cardView
     implementation("androidx.cardview:cardview:1.0.0")
-
-
 
     implementation 'com.google.code.gson:gson:2.8.6'
     implementation 'androidx.recyclerview:recyclerview:1.2.1'
@@ -97,22 +96,14 @@ dependencies {
 
     //Dexter
     implementation 'com.karumi:dexter:6.1.2'
-    implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.10"
+    implementation "org.jetbrains.kotlin:kotlin-reflect:1.6.20"
 
 
     //noinspection GradleCompatible
     implementation 'com.android.support:design:28.0.0'
 
-
-
-
-
-
-
-
-
-
-
+    //google
+    implementation 'com.google.android.gms:play-services-auth:20.1.0'
 
 
 }

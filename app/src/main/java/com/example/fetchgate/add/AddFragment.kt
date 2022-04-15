@@ -1,6 +1,5 @@
 package com.example.fetchgate.add
 
-import android.annotation.SuppressLint
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -11,7 +10,6 @@ import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.example.fetchgate.adapter.AddRecyclerViewAdapter
-import com.example.fetchgate.databinding.AddItemBinding
 import com.example.fetchgate.databinding.FragmentAddBinding
 import com.example.fetchgate.db.ItemDatabase
 import com.example.fetchgate.network.Add
@@ -22,21 +20,21 @@ class AddFragment : Fragment() {
 
     private lateinit var binding: FragmentAddBinding
     private lateinit var addRecyclerViewAdapter: AddRecyclerViewAdapter
-    private lateinit var bindingAdd: AddItemBinding
+
 
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
+
         binding = FragmentAddBinding.inflate(layoutInflater)
-        bindingAdd = AddItemBinding.inflate(layoutInflater)
 
         return binding.root
 
     }
 
-    @SuppressLint("NotifyDataSetChanged")
+
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
@@ -52,14 +50,13 @@ class AddFragment : Fragment() {
         binding.recyclerviewAdd.layoutManager = LinearLayoutManager(this.context)
 
         binding.recyclerviewAdd.apply {
-            val decoration = DividerItemDecoration(context,DividerItemDecoration.VERTICAL)
+            val decoration = DividerItemDecoration(context, DividerItemDecoration.VERTICAL)
             addItemDecoration(decoration)
         }
 
         addRecyclerViewAdapter.setOnItemClickListener(object :
             AddRecyclerViewAdapter.OnItemClickListener {
 
-            @SuppressLint("SetTextI18n")
             override fun onItemClicked(add: Add) {
 
                 findNavController().navigate(
@@ -71,21 +68,21 @@ class AddFragment : Fragment() {
             }
 
             override fun onItemLongClick(add: Add) {
-                    val snackBar = Snackbar.make(
-                        view!!, add.Name,
-                        Snackbar.LENGTH_LONG
+                val snackBar = Snackbar.make(
+                    view!!, add.Name,
+                    Snackbar.LENGTH_LONG
 
-                    ).setAction("Delete") {
-                            addViewModel.delete(add)
-                        if(view!=null) {
-                            val snackBar = Snackbar.make(
-                                view!!, "Item Deleted",
-                                Snackbar.LENGTH_LONG
-                            )
-                            snackBar.show()
-                        }
+                ).setAction("Delete") {
+                    addViewModel.delete(add)
+                    if (view != null) {
+                        val snackBar = Snackbar.make(
+                            view!!, "Item Deleted",
+                            Snackbar.LENGTH_LONG
+                        )
+                        snackBar.show()
                     }
-                    snackBar.show()
+                }
+                snackBar.show()
             }
         })
         binding.lifecycleOwner = this
@@ -119,6 +116,6 @@ class AddFragment : Fragment() {
             )
         }
     }
-}
 
+}
 
