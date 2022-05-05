@@ -43,8 +43,6 @@ class OverviewViewModel : ViewModel() {
                 else -> false
             }
         } else {
-            //   val networkInfo = connectivityManager.activeNetworkInfo ?: return false
-            //  return networkInfo.isConnected
             return true
         }
     }

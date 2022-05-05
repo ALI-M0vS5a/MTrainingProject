@@ -39,7 +39,6 @@ class AuthFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val gso = GoogleSignInOptions.Builder(GoogleSignInOptions.DEFAULT_SIGN_IN)
             .requestEmail()
             .build()
@@ -50,7 +49,6 @@ class AuthFragment : Fragment() {
 
         binding.signInButton.setOnClickListener {
             signIn()
-
         }
     }
 
@@ -84,6 +82,4 @@ class AuthFragment : Fragment() {
             Log.w(TAG, "signInResult:failed code=" + e.statusCode)
         }
     }
-
-
 }

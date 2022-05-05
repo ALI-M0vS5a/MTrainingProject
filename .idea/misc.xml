@@ -6,6 +6,7 @@
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable-v23/viewpager_not_selected.xml" value="0.1" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable-v24/viewpager_not_selected.xml" value="0.1" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable-v24/viewpager_selected.xml" value="0.1" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/button_style.xml" value="0.129" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.173" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.173" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/ic_baseline_add_circle_24.xml" value="0.173" />
@@ -38,6 +39,7 @@
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/item_view_pager.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/item_view_pager_2.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/loading.xml" value="0.25" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/notification.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/view_item.xml" value="0.1" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/xml/file_paths.xml" value="0.1" />

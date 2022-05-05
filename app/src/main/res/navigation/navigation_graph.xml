@@ -19,8 +19,8 @@
     </fragment>
     <fragment
         android:id="@+id/otherFragment"
-        android:name="com.example.fetchgate.fragments.OtherFragment"
-        tools:layout="@layout/fragment_other" />
+        android:name="com.example.fetchgate.notifications.NotificationFragment"
+        tools:layout="@layout/fragment_notifications" />
     <fragment
         android:id="@+id/thatFragment"
         android:name="com.example.fetchgate.fragments.ThatFragment"

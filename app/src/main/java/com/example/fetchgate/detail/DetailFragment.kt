@@ -40,5 +40,4 @@ class DetailFragment : Fragment() {
             detailID.text = detail.id.toString()
         }
     }
-
 }

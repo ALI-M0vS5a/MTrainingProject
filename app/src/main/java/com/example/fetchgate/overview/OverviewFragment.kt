@@ -140,7 +140,6 @@ class OverviewFragment : Fragment() {
             }
         }
     }
-
 }
 
 

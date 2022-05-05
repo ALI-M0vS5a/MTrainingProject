@@ -6,12 +6,16 @@ import androidx.room.Room
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import com.example.fetchgate.network.Add
+import com.example.fetchgate.network.Notifications
 import kotlinx.coroutines.InternalCoroutinesApi
 import kotlinx.coroutines.internal.synchronized
 
 @Database(
-    entities = [Add::class],
-    version = 21,
+    entities = [
+        Add::class,
+        Notifications::class
+    ],
+    version = 23,
     exportSchema = false
 )
 @TypeConverters(com.example.fetchgate.utils.Converter::class)

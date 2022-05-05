@@ -67,13 +67,6 @@ class CreateFragment : Fragment() {
         selectPictureIntent()
         addToDatabase()
         initRecyclerViewPager()
-//        if (savedInstanceState != null) {
-//            viewPagerRecyclerViewAdapter.getItemId(savedInstanceState.getInt("pageItem",0))
-//
-//        }
-
-
-
 
     }
 
@@ -236,7 +229,6 @@ class CreateFragment : Fragment() {
 
     private fun navigate() {
         findNavController().navigate(com.example.fetchgate.R.id.action_createFragment_to_addFragment)
-
     }
 
     private fun allFieldRequired() {
@@ -272,6 +264,7 @@ class CreateFragment : Fragment() {
             }
             val view = imageFilePath?.let { it2 ->
                 ViewPager(it2)
+
             }
             if (view != null) {
                 viewPagerRecyclerViewAdapter.updateViewPagerList(view)
@@ -317,12 +310,6 @@ class CreateFragment : Fragment() {
 
         return ViewModelProvider(this, viewModelFactory)[AddViewModel::class.java]
     }
-//     override fun onSaveInstanceState(outState: Bundle) {
-//        super.onSaveInstanceState(outState)
-//         outState.putInt("key",viewPagerRecyclerViewAdapter.itemCount)
-//        Log.d("onSaveInstanceState","onSavedInstanceState Called")
-//    }
-
 }
 
 

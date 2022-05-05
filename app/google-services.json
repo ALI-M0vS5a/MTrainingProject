@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "593149948587",
+    "project_id": "trainingproject-1ec03",
+    "storage_bucket": "trainingproject-1ec03.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:593149948587:android:dc766e32957c815aad7dee",
+        "android_client_info": {
+          "package_name": "com.example.fetchgate"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "593149948587-vrt9pgefn65blq192vae0975utep21ev.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCZ9xy0i4C8pDStyjrF9ib6fLAWwRSc5gM"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "593149948587-vrt9pgefn65blq192vae0975utep21ev.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

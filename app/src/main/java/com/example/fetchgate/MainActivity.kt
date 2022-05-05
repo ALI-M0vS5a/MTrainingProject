@@ -8,6 +8,7 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.navigation.findNavController
 import androidx.navigation.ui.NavigationUI
 import androidx.navigation.ui.setupWithNavController
+import com.google.android.material.bottomnavigation.BottomNavigationView
 
 
 class MainActivity : AppCompatActivity() {
@@ -16,10 +17,11 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
 
+
         actionBar = supportActionBar!!
 
         val bottomNavView =
-            findViewById<com.google.android.material.bottomnavigation.BottomNavigationView>(R.id.bottomNavigationView)
+            findViewById<BottomNavigationView>(R.id.bottomNavigationView)
         val navHostFragment = findViewById<View>(R.id.nav_host_fragment)
         bottomNavView.setupWithNavController(navHostFragment.findNavController())
 
@@ -29,9 +31,9 @@ class MainActivity : AppCompatActivity() {
 
         val receivedValueFromArabic = intent.extras!!.getBoolean("fromArabic")
         val receivedValueFromEnglish = intent.extras!!.getBoolean("fromEnglish")
-        if(receivedValueFromArabic){
+        if (receivedValueFromArabic) {
             actionBar.setTitle(R.string.app_arabic_name)
-        } else if(receivedValueFromEnglish){
+        } else if (receivedValueFromEnglish) {
             actionBar.setTitle(R.string.app_english_name)
         }
     }
@@ -40,6 +42,4 @@ class MainActivity : AppCompatActivity() {
         val navController = this.findNavController(R.id.nav_host_fragment)
         return navController.navigateUp()
     }
-
-
 }
