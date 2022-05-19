@@ -7,11 +7,8 @@ import androidx.recyclerview.widget.RecyclerView
 import com.example.fetchgate.databinding.NotificationBinding
 import com.example.fetchgate.network.Notifications
 
-class NotificationsAdapter : RecyclerView.Adapter<NotificationsAdapter.NotificationViewHolder>() {
+class NotificationsAdapter : RecyclerView.Adapter<NotificationsAdapter.NotificationViewHolder>(){
     val notifications = ArrayList<Notifications>()
-
-   // var removedPosition: Int = 0
-   // lateinit var removedItem: Notifications
 
     inner class NotificationViewHolder(val binding: NotificationBinding) :
         RecyclerView.ViewHolder(binding.root) {
@@ -48,17 +45,7 @@ class NotificationsAdapter : RecyclerView.Adapter<NotificationsAdapter.Notificat
 
     }
 
-    fun removeItem(position: Int) {
-       // removedPosition = position
-      //  removedItem = notifications[position]
-        notifications.removeAt(position)
-        notifyItemRemoved(position)
-
-    }
-
-
     override fun getItemCount(): Int {
         return notifications.size
     }
-
 }

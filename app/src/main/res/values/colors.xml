@@ -13,4 +13,6 @@
     <color name="sea_green">#34A853</color>
     <color name="dark_grey_2">#272729</color>
     <color name="black_bg">#0d0c0b</color>
+    <color name="colorOnPrimary">#337C7B7E</color>
+    <color name="colorWhite">#FFFFFF</color>
 </resources>

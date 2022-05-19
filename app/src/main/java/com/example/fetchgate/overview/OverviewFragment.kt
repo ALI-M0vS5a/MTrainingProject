@@ -1,18 +1,21 @@
 
 package com.example.fetchgate.overview
 
+
 import android.os.Bundle
 import android.os.SystemClock
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.core.os.bundleOf
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.lifecycleScope
 import androidx.navigation.fragment.findNavController
+import androidx.paging.PagingData
+import androidx.paging.filter
 import androidx.recyclerview.widget.DividerItemDecoration
 import com.example.fetchgate.R
 import com.example.fetchgate.adapter.LoadingAdapter
@@ -20,6 +23,7 @@ import com.example.fetchgate.adapter.RecyclerViewPagingAdapter
 import com.example.fetchgate.databinding.FragmentOverviewBinding
 import com.example.fetchgate.network.Result
 import kotlinx.coroutines.flow.collectLatest
+import java.util.*
 
 
 class OverviewFragment : Fragment() {
@@ -28,7 +32,7 @@ class OverviewFragment : Fragment() {
     private lateinit var binding: FragmentOverviewBinding
     private lateinit var recyclerViewPagingAdapter: RecyclerViewPagingAdapter
     private lateinit var viewModel: OverviewViewModel
-
+    private lateinit var resultsList: PagingData<Result>
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,12 +48,20 @@ class OverviewFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        resultsList = PagingData.empty()
+
+
         initRecyclerView()
         initViewModel()
         swipeRefresh()
 
+        binding.edtSearch.doOnTextChanged { text, _, _, _ ->
+            val query = text.toString().lowercase(Locale.getDefault())
+            filterWithQuery(query)
 
+        }
     }
+
 
     private fun initRecyclerView() {
 
@@ -99,7 +111,6 @@ class OverviewFragment : Fragment() {
                         return
                     }
                     mLastClickTime = SystemClock.elapsedRealtime().toInt()
-                    Log.d("Output", "imageClicked")
                     val bundle = bundleOf("clickImage" to imageUrl)
                     findNavController().navigate(
                         R.id.action_overviewFragment_to_customDialog,
@@ -119,8 +130,10 @@ class OverviewFragment : Fragment() {
     private fun getListData() {
         lifecycleScope.launchWhenCreated {
             viewModel.getListData().collectLatest {
+                resultsList = it
                 recyclerViewPagingAdapter.submitData(it)
                 binding.swipe.isRefreshing = false
+
             }
         }
     }
@@ -140,6 +153,36 @@ class OverviewFragment : Fragment() {
             }
         }
     }
+
+    private fun filterWithQuery(query: String) {
+        if (query.isNotEmpty()) {
+            val filteredList: PagingData<Result> = onFilterChanged(query)
+            lifecycleScope.launchWhenCreated {
+                recyclerViewPagingAdapter.submitData(filteredList)
+            }
+
+        } else {
+            if (query.isEmpty()) {
+                lifecycleScope.launchWhenCreated {
+                    recyclerViewPagingAdapter.submitData(resultsList)
+
+                }
+            }
+        }
+    }
+
+    private fun onFilterChanged(filterQuery: String): PagingData<Result> {
+
+        return resultsList.filter { it.full_name.contains(filterQuery, true) }
+    }
+
+
+
+
 }
+
+
+
+
 
 

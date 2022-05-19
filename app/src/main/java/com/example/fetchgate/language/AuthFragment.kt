@@ -27,6 +27,7 @@ class AuthFragment : Fragment() {
     private lateinit var mGoogleSignInClient: GoogleSignInClient
 
 
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?

@@ -12,12 +12,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import androidx.activity.result.contract.ActivityResultContracts
+import androidx.appcompat.widget.AppCompatButton
 import androidx.core.content.FileProvider
 import androidx.core.view.isVisible
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
 import androidx.navigation.fragment.navArgs
+import com.example.fetchgate.R
 import com.example.fetchgate.adapter.ViewPagerAdapter
 import com.example.fetchgate.add.AddViewModel
 import com.example.fetchgate.add.AddViewModelFactory
@@ -25,6 +27,7 @@ import com.example.fetchgate.databinding.FragmentCreateBinding
 import com.example.fetchgate.db.ItemDatabase
 import com.example.fetchgate.network.Add
 import com.example.fetchgate.network.ViewPager
+import com.google.android.material.bottomsheet.BottomSheetDialog
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.tabs.TabLayoutMediator
 import java.io.File
@@ -45,7 +48,6 @@ class CreateFragment : Fragment() {
     private var listOfImageFiles: MutableList<String> = mutableListOf()
     private var deletedImage: MutableList<String> = mutableListOf()
 
-
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -63,8 +65,9 @@ class CreateFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         addViewModel = initViewModel()
-        takePictureIntent()
-        selectPictureIntent()
+        binding.showBottomsheet.setOnClickListener {
+            updateCategoryView()
+        }
         addToDatabase()
         initRecyclerViewPager()
 
@@ -91,6 +94,22 @@ class CreateFragment : Fragment() {
             }
         })
     }
+    @SuppressLint("InflateParams")
+    private fun updateCategoryView(){
+        val btnSheet = layoutInflater.inflate(R.layout.bottomsheet_layout,null)
+        val dialog = BottomSheetDialog(requireContext(),R.style.sheetDialog)
+        dialog.setContentView(btnSheet)
+        dialog.show()
+
+        val buttonCapture: AppCompatButton = btnSheet.findViewById(R.id.buttonCapture)
+        buttonCapture.setOnClickListener {
+            captureImage()
+        }
+        val buttonSelect: AppCompatButton = btnSheet.findViewById(R.id.buttonSelect)
+        buttonSelect.setOnClickListener {
+            selectImage()
+        }
+    }
 
     private fun receiveArgs() {
         val add = args.add
@@ -101,14 +120,6 @@ class CreateFragment : Fragment() {
             Log.d("receivedImages", images.toString())
         }
     }
-
-
-    private fun takePictureIntent() {
-        binding.buttonCapture.setOnClickListener {
-            captureImage()
-        }
-    }
-
     @SuppressLint("QueryPermissionsNeeded")
     private fun captureImage() {
         try {
@@ -127,13 +138,6 @@ class CreateFragment : Fragment() {
                 .show()
         }
     }
-
-    private fun selectPictureIntent() {
-        binding.buttonSelect.setOnClickListener {
-            selectImage()
-        }
-    }
-
     private fun selectImage() {
         val callGalleryIntent =
             Intent(Intent.ACTION_PICK, MediaStore.Images.Media.INTERNAL_CONTENT_URI)
@@ -142,75 +146,80 @@ class CreateFragment : Fragment() {
 
 
     private fun addToDatabase() {
+
         if (!args.isFromAdd) {
             initRecyclerViewPager()
             "Update".also { binding.buttonCreate.text = it }
             receiveArgs()
             binding.editTextEmail.isVisible = false
             binding.editTextPhone.isVisible = false
+
         }
-        binding.buttonCreate.setOnClickListener {
-            if (args.isFromAdd) {
-                val name = binding.editTextCarName.text.toString()
-                val email = binding.editTextEmail.text.toString()
-                val phoneNumber = binding.editTextPhone.text.toString()
-                val image = listOfImageFiles
 
-                if (name == "" || image.isEmpty() || email == "" || phoneNumber == "") {
-                    allFieldRequired()
-                } else {
-                    val add = Add(0, name, phoneNumber, email, image)
-                    if (image.size >= 3) {
-                        addViewModel.addItem(add)
-                        navigate()
+            binding.buttonCreate.setOnClickListener {
+                if (args.isFromAdd) {
+                    val name = binding.editTextCarName.text.toString()
+                    val email = binding.editTextEmail.text.toString()
+                    val phoneNumber = binding.editTextPhone.text.toString()
+                    val image = listOfImageFiles
+
+                    if (name == "" || image.isEmpty() || email == "" || phoneNumber == "") {
+                        allFieldRequired()
                     } else {
-                        snackBar2()
-                    }
-                }
-            } else {
-                val name = args.add?.Name
-                val email = args.add?.Email
-                val phoneNumber = args.add?.Phone
-                val image = args.add?.image
-                val nameUpdate = binding.editTextCarName.text.toString()
-                val imageUpdate = listOfImageFiles
-                val imageDeleted = deletedImage
-
-                if (name == nameUpdate && imageUpdate.size == 0) {
-                    addAll(image, imageDeleted)
-                    val update2 =
-                        Add(args.add!!.id, nameUpdate, phoneNumber!!, email!!, imageUpdate)
-                    if (images.size >= 3) {
-                        addViewModel.updateItem(update2)
-                    } else {
-                        snackBar()
-                    }
-                } else {
-                    if (name == nameUpdate) {
-                        addAll(image, imageDeleted)
-                        val update3 = Add(args.add!!.id, name, phoneNumber!!, email!!, imageUpdate)
-                        if (images.size >= 3) {
-                            addViewModel.updateItem(update3)
-
+                        val add = Add(0, name, phoneNumber, email, image)
+                        if (image.size >= 3) {
+                            addViewModel.addItem(add)
+                            navigate()
                         } else {
                             snackBar2()
                         }
+                    }
+                } else {
+                    val name = args.add?.Name
+                    val email = args.add?.Email
+                    val phoneNumber = args.add?.Phone
+                    val image = args.add?.image
+                    val nameUpdate = binding.editTextCarName.text.toString()
+                    val imageUpdate = listOfImageFiles
+                    val imageDeleted = deletedImage
 
-                    } else {
+                    if (name == nameUpdate && imageUpdate.size == 0) {
                         addAll(image, imageDeleted)
-                        val update4 =
+                        val update2 =
                             Add(args.add!!.id, nameUpdate, phoneNumber!!, email!!, imageUpdate)
                         if (images.size >= 3) {
-                            addViewModel.updateItem(update4)
+                            addViewModel.updateItem(update2)
                         } else {
-                            snackBar2()
+                            snackBar()
+                        }
+                    } else {
+                        if (name == nameUpdate) {
+                            addAll(image, imageDeleted)
+                            val update3 =
+                                Add(args.add!!.id, name, phoneNumber!!, email!!, imageUpdate)
+                            if (images.size >= 3) {
+                                addViewModel.updateItem(update3)
+
+                            } else {
+                                snackBar2()
+                            }
+
+                        } else {
+                            addAll(image, imageDeleted)
+                            val update4 =
+                                Add(args.add!!.id, nameUpdate, phoneNumber!!, email!!, imageUpdate)
+                            if (images.size >= 3) {
+                                addViewModel.updateItem(update4)
+                            } else {
+                                snackBar2()
+                            }
                         }
                     }
+                    navigate()
                 }
-                navigate()
             }
         }
-    }
+
 
     private fun addAll(
         image: List<String>?,
@@ -228,7 +237,7 @@ class CreateFragment : Fragment() {
 
 
     private fun navigate() {
-        findNavController().navigate(com.example.fetchgate.R.id.action_createFragment_to_addFragment)
+        findNavController().navigate(R.id.action_createFragment_to_addFragment)
     }
 
     private fun allFieldRequired() {

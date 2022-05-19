@@ -4,6 +4,8 @@ import android.annotation.SuppressLint
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.ViewGroup
+import android.widget.Filter
+import android.widget.Filterable
 import androidx.recyclerview.widget.RecyclerView
 import com.example.fetchgate.databinding.AddItemBinding
 import com.example.fetchgate.network.Add
@@ -12,7 +14,7 @@ import com.google.android.material.tabs.TabLayoutMediator
 
 
 class AddRecyclerViewAdapter :
-    RecyclerView.Adapter<AddRecyclerViewAdapter.AddViewHolder>() {
+    RecyclerView.Adapter<AddRecyclerViewAdapter.AddViewHolder>(){
     private var adds = ArrayList<Add>()
 
     private lateinit var mListener: OnItemClickListener
@@ -92,6 +94,7 @@ class AddRecyclerViewAdapter :
     override fun getItemCount(): Int {
         return adds.size
     }
+
 
 }
 

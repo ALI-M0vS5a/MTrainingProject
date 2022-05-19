@@ -65,6 +65,7 @@ class LanguageFragment : Fragment() {
         binding.signOutButton.setOnClickListener {
             signOut()
         }
+
     }
 
     private fun attachArabic(newBase: Context?) {

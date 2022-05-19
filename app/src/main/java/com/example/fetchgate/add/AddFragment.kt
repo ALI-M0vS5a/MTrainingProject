@@ -4,6 +4,7 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.navigation.fragment.findNavController
@@ -14,6 +15,8 @@ import com.example.fetchgate.databinding.FragmentAddBinding
 import com.example.fetchgate.db.ItemDatabase
 import com.example.fetchgate.network.Add
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class AddFragment : Fragment() {
@@ -21,6 +24,7 @@ class AddFragment : Fragment() {
     private lateinit var binding: FragmentAddBinding
     private lateinit var addRecyclerViewAdapter: AddRecyclerViewAdapter
 
+    private lateinit var addsList: List<Add>
 
 
     override fun onCreateView(
@@ -38,10 +42,15 @@ class AddFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        addsList = arrayListOf()
+
         val addViewModel = initViewModel()
         initRecyclerView(addViewModel)
         navigate()
-
+        binding.edtSearch.doOnTextChanged { text, _, _, _ ->
+            val query = text.toString().lowercase(Locale.getDefault())
+            filterWithQuery(query)
+        }
     }
 
     private fun initRecyclerView(addViewModel: AddViewModel) {
@@ -99,6 +108,7 @@ class AddFragment : Fragment() {
             viewLifecycleOwner
         ) { list ->
             list?.let {
+                addsList = it
                 addRecyclerViewAdapter.updateList(it)
             }
         }
@@ -117,5 +127,24 @@ class AddFragment : Fragment() {
         }
     }
 
+    private fun filterWithQuery(query: String){
+        if(query.isNotEmpty()){
+            val filteredList: List<Add> =onFilterChanged(query)
+            addRecyclerViewAdapter.updateList(filteredList)
+
+        }else if(query.isEmpty()){
+            addRecyclerViewAdapter.updateList(addsList)
+        }
+    }
+
+    private fun onFilterChanged(filterQuery: String): List<Add> {
+        val filteredList = ArrayList<Add>()
+        for(currentAdd in addsList){
+            if(currentAdd.Name.lowercase(Locale.getDefault()).contains(filterQuery)) {
+                filteredList.add(currentAdd)
+            }
+        }
+        return filteredList
+    }
 }
 

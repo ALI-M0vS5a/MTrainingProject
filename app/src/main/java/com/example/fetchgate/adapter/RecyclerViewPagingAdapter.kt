@@ -9,9 +9,12 @@ import com.example.fetchgate.databinding.ViewItemBinding
 import com.example.fetchgate.network.Result
 import com.example.fetchgate.utils.bindImage
 
+
+
 class RecyclerViewPagingAdapter :
-    PagingDataAdapter<Result, RecyclerViewPagingAdapter.ViewHolder>(ResultDiffUtil()) {
+    PagingDataAdapter<Result, RecyclerViewPagingAdapter.ViewHolder>(ResultDiffUtil()){
     private lateinit var mListener: OnItemClickListener
+
 
     interface OnItemClickListener {
         fun onItemClicked(result: Result)
@@ -44,6 +47,7 @@ class RecyclerViewPagingAdapter :
         }
     }
 
+
     override fun onBindViewHolder(holder: ViewHolder, position: Int) {
         getItem(position)?.let { it1 ->
             holder.bind(it1)
@@ -57,7 +61,6 @@ class RecyclerViewPagingAdapter :
             }
         }
     }
-
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): ViewHolder {
         return ViewHolder(
             ViewItemBinding.inflate(
@@ -68,5 +71,4 @@ class RecyclerViewPagingAdapter :
         )
     }
 }
-
 

@@ -4,8 +4,12 @@
     <option name="filePathToZoomLevelMap">
       <map>
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable-v23/viewpager_not_selected.xml" value="0.1" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.118" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable-v24/search_bg.xml" value="0.1" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable-v24/viewpager_not_selected.xml" value="0.1" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable-v24/viewpager_selected.xml" value="0.1" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/background_round_padded.xml" value="0.1125" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/bottomsheet_design.xml" value="0.1" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/button_style.xml" value="0.129" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/ic_android_black_24dp.xml" value="0.173" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/ic_baseline_add_24.xml" value="0.173" />
@@ -15,23 +19,37 @@
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/ic_baseline_free_breakfast_24.xml" value="0.173" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/ic_baseline_handyman_24.xml" value="0.173" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/ic_baseline_home_24.xml" value="0.173" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/ic_baseline_settings_24.xml" value="0.118" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/ic_contact.xml" value="0.117" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/lb.xml" value="0.1125" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/line.xml" value="0.1" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/line_drawable.xml" value="0.1" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/menu_background_color_state.xml" value="0.1125" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/round_top_background.xml" value="0.1135" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/selector.xml" value="0.1445" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/thumb.xml" value="0.1" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/thumb_drawable.xml" value="0.1" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/viewpager_indicators.xml" value="0.1" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/viewpager_not_selected.xml" value="0.1445" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/drawable/viewpager_selected.xml" value="0.1445" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/activity_main.xml" value="0.1" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/activity_start.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/add_item.xml" value="0.22" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/app_bar_main.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/bottomsheet_layout.xml" value="0.22" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/contacts_layout.xml" value="0.1" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/dialog_layout.xml" value="0.1721014492753623" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/file_paths.xml" value="0.18885869565217392" />
-        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_add.xml" value="0.11684782608695653" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_add.xml" value="0.11911231884057971" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_auth.xml" value="0.20416666666666666" />
-        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_create.xml" value="0.22" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_contacts.xml" value="0.1" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_create.xml" value="0.16455696202531644" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_detail.xml" value="0.1358695652173913" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_language.xml" value="0.18385416666666668" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_notifications.xml" value="0.1" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_other.xml" value="0.1721014492753623" />
-        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_overview.xml" value="0.1721014492753623" />
-        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_that.xml" value="0.1721014492753623" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_overview.xml" value="0.1" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_that.xml" value="0.1" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_this.xml" value="0.1721014492753623" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/fragment_update.xml" value="0.18" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/gallery_item.xml" value="0.11614583333333334" />
@@ -39,9 +57,14 @@
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/item_view_pager.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/item_view_pager_2.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/loading.xml" value="0.25" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/nav_header_main.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/notification.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/layout/view_item.xml" value="0.1" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/menu/activity_main_drawer.xml" value="0.20416666666666666" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/menu/bottom_navigation_menu.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.118" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.118" />
+        <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round_lb.xml" value="0.1125" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/xml/file_paths.xml" value="0.1" />
         <entry key="..\:/Users/ali.moussa/AndroidStudioProjects/FetchGate/app/src/main/res/xml/motion_scene.xml" value="0.11614583333333334" />
       </map>

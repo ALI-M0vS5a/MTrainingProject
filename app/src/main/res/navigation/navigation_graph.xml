@@ -15,16 +15,41 @@
         <action
             android:id="@+id/action_overviewFragment_to_customDialog"
             app:destination="@id/customDialog" />
+        <action
+            android:id="@+id/action_overviewFragment_to_otherFragment"
+            app:destination="@id/otherFragment" />
+        <action
+            android:id="@+id/action_overviewFragment_to_startActivity2"
+            app:destination="@id/startActivity2" />
+        <action
+            android:id="@+id/action_overviewFragment_to_thatFragment"
+            app:destination="@id/thatFragment" />
+
 
     </fragment>
     <fragment
         android:id="@+id/otherFragment"
         android:name="com.example.fetchgate.notifications.NotificationFragment"
-        tools:layout="@layout/fragment_notifications" />
+        tools:layout="@layout/fragment_notifications" >
+        <action
+            android:id="@+id/action_otherFragment_to_overviewFragment"
+            app:destination="@id/overviewFragment" />
+        <action
+            android:id="@+id/action_otherFragment_to_startActivity2"
+            app:destination="@id/startActivity2" />
+
+    </fragment>
     <fragment
         android:id="@+id/thatFragment"
-        android:name="com.example.fetchgate.fragments.ThatFragment"
-        tools:layout="@layout/fragment_that" />
+        android:name="com.example.fetchgate.fragments.ContactsFragment"
+        tools:layout="@layout/fragment_contacts" >
+        <action
+            android:id="@+id/action_thatFragment_to_overviewFragment"
+            app:destination="@id/overviewFragment" />
+        <action
+            android:id="@+id/action_thatFragment_to_startActivity2"
+            app:destination="@id/startActivity2" />
+    </fragment>
     <fragment
         android:id="@+id/addFragment"
         android:name="com.example.fetchgate.add.AddFragment"
@@ -40,6 +65,12 @@
         <action
             android:id="@+id/action_addFragment_to_createFragment2"
             app:destination="@id/createFragment" />
+        <action
+            android:id="@+id/action_addFragment_to_overviewFragment"
+            app:destination="@id/overviewFragment" />
+        <action
+            android:id="@+id/action_addFragment_to_startActivity2"
+            app:destination="@id/startActivity2" />
 
     </fragment>
     <fragment
@@ -49,6 +80,12 @@
         <argument
             android:name="detail"
             app:argType="com.example.fetchgate.network.Result" />
+        <action
+            android:id="@+id/action_detailFragment_to_overviewFragment"
+            app:destination="@+id/overviewFragment"/>
+        <action
+            android:id="@+id/action_detailFragment_to_startActivity2"
+            app:destination="@id/startActivity2" />
     </fragment>
     <dialog
         android:id="@+id/customDialog"
@@ -62,6 +99,9 @@
         <action
             android:id="@+id/action_createFragment_to_addFragment"
             app:destination="@id/addFragment" />
+        <action
+            android:id="@+id/action_createFragment_to_overviewFragment"
+            app:destination="@+id/overviewFragment"/>
 
         <argument
             android:name="isFromAdd"
@@ -71,7 +111,20 @@
             app:nullable="true"
             android:defaultValue="@null"
             app:argType="com.example.fetchgate.network.Add" />
+        <action
+            android:id="@+id/action_createFragment_to_startActivity2"
+            app:destination="@id/startActivity2" />
 
 
     </fragment>
+    <activity
+        android:id="@+id/startActivity2"
+        android:name="com.example.fetchgate.language.StartActivity"
+        android:label="fragment_language"
+        tools:layout="@layout/fragment_language" >
+        <argument
+            android:name="isFromOverview"
+            app:argType="boolean" />
+    </activity>
+
 </navigation>

@@ -21,20 +21,20 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            tools:listitem="@layout/item_view_pager"/>
+            android:background="@drawable/ic_baseline_directions_car_24"
+            tools:listitem="@layout/item_view_pager" />
 
         <com.google.android.material.tabs.TabLayout
             android:id="@+id/tab_layout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:padding="8dp"
             android:background="@android:color/transparent"
-            app:tabGravity="center"
-            app:tabBackground="@drawable/viewpager_indicators"
+            android:padding="8dp"
             android:translationY="16dp"
-            app:tabIndicatorHeight="0dp"
-            app:layout_constraintBottom_toTopOf="@+id/editTextEmail" />
-
+            app:layout_constraintBottom_toTopOf="@+id/editTextEmail"
+            app:tabBackground="@drawable/viewpager_indicators"
+            app:tabGravity="center"
+            app:tabIndicatorHeight="0dp" />
 
 
         <EditText
@@ -43,58 +43,69 @@
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="@string/enter_name"
+            android:inputType="textNoSuggestions"
             android:textColorHint="@color/blueberry"
             android:textStyle="bold"
-            android:inputType="textNoSuggestions"
-            app:layout_constraintBottom_toTopOf="@+id/buttonCapture"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:background="@drawable/search_bg"
+            app:layout_constraintBottom_toTopOf="@+id/buttonCreate"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
+
         <EditText
             android:id="@+id/editTextPhone"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="@string/enter_phoneNumber"
-            android:textColorHint="@color/blueberry"
-            android:textStyle="bold"
             android:inputType="phone"
+            android:layout_margin="10dp"
+            android:background="@drawable/search_bg"
+            android:textColorHint="@color/blueberry"
+            android:padding="10dp"
+            android:textStyle="bold"
             app:layout_constraintBottom_toTopOf="@+id/editTextCarName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
+
         <EditText
             android:id="@+id/editTextEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:gravity="center"
             android:hint="@string/enter_email"
+            android:padding="10dp"
+            android:layout_margin="10dp"
+            android:inputType="textEmailAddress"
+            android:background="@drawable/search_bg"
             android:textColorHint="@color/blueberry"
             android:textStyle="bold"
-            android:inputType="textEmailAddress"
             app:layout_constraintBottom_toTopOf="@+id/editTextPhone"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.5"
             app:layout_constraintStart_toStartOf="parent" />
 
 
-        <Button
-            android:id="@+id/buttonCapture"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/captureImage"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/buttonCreate"
-            app:layout_constraintStart_toStartOf="parent" />
+<!--        <Button-->
+<!--            android:id="@+id/buttonCapture"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/captureImage"-->
+<!--            android:textSize="20sp"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/buttonCreate"-->
+<!--            app:layout_constraintStart_toStartOf="parent" />-->
 
-        <Button
-            android:id="@+id/buttonSelect"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/selectImage"
-            android:textSize="20sp"
-            app:layout_constraintBottom_toTopOf="@+id/buttonCreate"
-            app:layout_constraintEnd_toEndOf="parent" />
+<!--        <Button-->
+<!--            android:id="@+id/buttonSelect"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="@string/selectImage"-->
+<!--            android:textSize="20sp"-->
+<!--            app:layout_constraintBottom_toTopOf="@+id/buttonCreate"-->
+<!--            app:layout_constraintEnd_toEndOf="parent" />-->
 
         <Button
             android:id="@+id/buttonCreate"
@@ -105,6 +116,22 @@
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent" />
+
+        <androidx.appcompat.widget.AppCompatButton
+            android:id="@+id/show_bottomsheet"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:layout_marginLeft="50dp"
+            android:layout_marginRight="50dp"
+            android:background="@color/blueberry"
+            android:gravity="center"
+            android:text="@string/add_images"
+            android:textAllCaps="false"
+            android:textColor="@color/white"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
 
     </androidx.constraintlayout.widget.ConstraintLayout>

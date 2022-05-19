@@ -2,12 +2,14 @@ package com.example.fetchgate.db
 
 import androidx.lifecycle.LiveData
 import com.example.fetchgate.network.Add
+import com.example.fetchgate.network.ContactDataTransfer
 import com.example.fetchgate.network.Notifications
 
 class Repository(private val itemDao: ItemDao) {
 
     val allItem: LiveData<List<Add>> = itemDao.getAllItems()
     val allNotifications : LiveData<List<Notifications>> = itemDao.getAllNotifications()
+    val allContacts : LiveData<List<ContactDataTransfer>> = itemDao.getAllContacts()
 
     suspend fun insert(add: Add){
         itemDao.insert(add)
@@ -26,6 +28,10 @@ class Repository(private val itemDao: ItemDao) {
     }
     suspend fun deleteNotification(notifications: Notifications){
         itemDao.deleteNotification(notifications)
+    }
+
+    suspend fun insertContacts(contactDataTransfer: ContactDataTransfer){
+        itemDao.insertContacts(contactDataTransfer)
     }
 
 }

@@ -13,6 +13,7 @@ data class Result(
     val owner: Owner
 ) : Serializable
 
+
 data class Owner(
     @SerializedName("avatar_url")
     val avatar_url: String

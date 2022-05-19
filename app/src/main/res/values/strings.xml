@@ -16,4 +16,23 @@
     <string name="chat">Chatting</string>
     <string name="app_arabic_name" translatable="false">مشروع تدريب</string>
     <string name="app_english_name" translatable="false">TrainingProject</string>
+    <string name="close" translatable="false">close</string>
+    <string name="open" translatable="false">open</string>
+    <string name="home">home</string>
+    <string name="settings">settings</string>
+    <string name="iv_person_description">iv_person_description</string>
+    <string name="ali_moussa">Ali Moussa</string>
+    <string name="_78848044">78848044</string>
+    <string name="textview">TextView</string>
+    <string name="permission_required">Permissions Required</string>
+    <string name="denied_msg">You have forcefully denied some of the required permissions</string>
+    <string name="open_settings">for this action. Please open settings, go to permissions and allow them.</string>
+    <string name="ascending">ASC</string>
+    <string name="scheme">package</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="search">search</string>
+    <string name="close_bottom_sheet">Close Bottom sheet</string>
+    <string name="show_bottom_sheet">Show Bottom sheet</string>
+    <string name="add_images">Add Images</string>
 </resources>

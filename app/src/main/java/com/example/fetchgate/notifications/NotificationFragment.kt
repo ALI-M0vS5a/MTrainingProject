@@ -4,22 +4,23 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.core.widget.doOnTextChanged
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.ViewModelProvider
 import androidx.recyclerview.widget.DividerItemDecoration
 import androidx.recyclerview.widget.ItemTouchHelper
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-import com.example.fetchgate.R
 import com.example.fetchgate.adapter.NotificationsAdapter
-import com.example.fetchgate.bol
 import com.example.fetchgate.databinding.FragmentNotificationsBinding
 import com.example.fetchgate.db.ItemDatabase
-import com.example.fetchgate.message1
 import com.example.fetchgate.network.Notifications
-import com.example.fetchgate.notificationTitle
 import com.example.fetchgate.utils.SwipeToDeleteCallback
+import com.example.fetchgate.utils.bol
+import com.example.fetchgate.utils.message1
+import com.example.fetchgate.utils.notificationTitle
 import com.google.android.material.snackbar.Snackbar
+import java.util.*
 
 
 class NotificationFragment : Fragment() {
@@ -27,6 +28,7 @@ class NotificationFragment : Fragment() {
 
     private lateinit var binding: FragmentNotificationsBinding
     private lateinit var notificationsRecyclerViewAdapter: NotificationsAdapter
+    private lateinit var notificationsList: List<Notifications>
 
 
     override fun onCreateView(
@@ -42,6 +44,8 @@ class NotificationFragment : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        notificationsList = arrayListOf()
+
         val notificationViewModel = initViewModel()
         initRecyclerView()
         val notification =
@@ -52,12 +56,11 @@ class NotificationFragment : Fragment() {
                 bol = false
             }
         }
-        val swipeToDeleteCallback = object : SwipeToDeleteCallback(){
+        val swipeToDeleteCallback = object : SwipeToDeleteCallback() {
             override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
                 val position = viewHolder.absoluteAdapterPosition
                 val removedItem = notificationsRecyclerViewAdapter.notifications[position]
 
-              //  notificationsRecyclerViewAdapter.removeItem(position)
                 notificationViewModel.deleteNotification(removedItem)
 
 
@@ -65,20 +68,22 @@ class NotificationFragment : Fragment() {
                     view,
                     "Item Removed!",
                     Snackbar.LENGTH_LONG
-                ).setAction("Undo"){
+                ).setAction("Undo") {
                     notificationViewModel.addNotification(removedItem)
 
-//                    notificationsRecyclerViewAdapter.notifications.add(
-//                        notificationsRecyclerViewAdapter.removedPosition,
-//                        notificationsRecyclerViewAdapter.removedItem
-//                    )
-                   // notificationsRecyclerViewAdapter.notifyItemInserted(notificationsRecyclerViewAdapter.removedPosition)
                 }
                 snackBar.show()
             }
         }
         val itemTouchHelper = ItemTouchHelper(swipeToDeleteCallback)
         itemTouchHelper.attachToRecyclerView(binding.recyclerviewNotifications)
+
+        binding.edtSearch.doOnTextChanged { text, _, _, _ ->
+            val query = text.toString().lowercase(Locale.getDefault())
+            filterWithQuery(query)
+
+        }
+
     }
 
     private fun initRecyclerView() {
@@ -105,58 +110,34 @@ class NotificationFragment : Fragment() {
             viewLifecycleOwner
         ) { list ->
             list?.let {
+                notificationsList = it
                 notificationsRecyclerViewAdapter.updateList(it)
             }
         }
         return addViewModel
     }
 
-//    private fun swipeToDelete() {
-//        ItemTouchHelper(object : ItemTouchHelper.SimpleCallback(
-//            ItemTouchHelper.UP or ItemTouchHelper.DOWN,
-//            ItemTouchHelper.LEFT or ItemTouchHelper.RIGHT
-//        ) {
-//            override fun onMove(
-//                recyclerView: RecyclerView,
-//                viewHolder: RecyclerView.ViewHolder,
-//                target: RecyclerView.ViewHolder
-//            ): Boolean {
-//                return true
-//            }
-//
-//            override fun onSwiped(viewHolder: RecyclerView.ViewHolder, direction: Int) {
-//               // val position = viewHolder.absoluteAdapterPosition
-//                val notificationViewModel = initViewModel()
-//
-//                notificationsRecyclerViewAdapter.removeItem(viewHolder.absoluteAdapterPosition,viewHolder)
-//
-//             //   notificationViewModel.deleteNotification(notificationsRecyclerViewAdapter.removedItem)
-//
-//
-//
-////                Snackbar.make(
-////                    viewHolder.itemView,
-////                    " removed",
-////                    Snackbar.LENGTH_LONG
-////                ).setAction(
-////                    "Undo"
-////                ) {
-////
-////                    notificationsRecyclerViewAdapter.notifications.add(
-////                        notificationsRecyclerViewAdapter.removedPosition,
-////                        notificationsRecyclerViewAdapter.removedItem
-////                    )
-////                   // notificationViewModel.addNotification(notificationsRecyclerViewAdapter.removedItem)
-////                    notificationsRecyclerViewAdapter.notifyItemInserted(
-////                        notificationsRecyclerViewAdapter.removedPosition
-////                    )
-////                   // notificationViewModel.addNotification(notificationsRecyclerViewAdapter.removedItem)
-////
-////                }.show()
-//
-//
-//            }
-//
-//        }).attachToRecyclerView(binding.recyclerviewNotifications)
-//    }
+    private fun filterWithQuery(query: String) {
+        if (query.isNotEmpty()) {
+            val filteredList: List<Notifications> = onFilterChanged(query)
+            notificationsRecyclerViewAdapter.updateList(filteredList)
+        }else if(query.isEmpty()){
+            notificationsRecyclerViewAdapter.updateList(notificationsList)
+        }
+
+    }
+
+    private fun onFilterChanged(filterQuery: String): List<Notifications> {
+        val filteredList = ArrayList<Notifications>()
+        for (currentNotification in notificationsList) {
+            if (currentNotification.notificationTitle.lowercase(Locale.getDefault())
+                    .contains(filterQuery)
+            ) {
+                filteredList.add(currentNotification)
+            }
+
+        }
+        return filteredList
+
+    }
 }

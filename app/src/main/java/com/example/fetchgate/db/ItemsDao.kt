@@ -3,6 +3,7 @@ package com.example.fetchgate.db
 import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.fetchgate.network.Add
+import com.example.fetchgate.network.ContactDataTransfer
 import com.example.fetchgate.network.Notifications
 
 @Dao
@@ -28,5 +29,10 @@ interface ItemDao {
     @Delete
     suspend fun deleteNotification(notifications: Notifications)
 
+    @Insert(onConflict = OnConflictStrategy.REPLACE)
+    suspend fun insertContacts(contactDataTransfer: ContactDataTransfer)
+
+    @Query("SELECT * FROM contacts " + "ORDER BY name ASC")
+    fun getAllContacts(): LiveData<List<ContactDataTransfer>>
 
 }
