@@ -23,12 +23,15 @@ import kotlinx.coroutines.*
 import java.util.*
 
 
+@Suppress("UNCHECKED_CAST")
 class ContactsFragment : Fragment() {
 
     private lateinit var binding: FragmentContactsBinding
     private lateinit var contactAdapter: ContactsAdapter
     private var contactProvider: ContactProvider? = null
-    private lateinit var contactsList: List<ContactDataTransfer>
+    private lateinit var alphabetsList: ArrayList<Char>
+    lateinit var contactsList: List<ContactDataTransfer>
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -36,7 +39,9 @@ class ContactsFragment : Fragment() {
     ): View {
 
         binding = FragmentContactsBinding.inflate(layoutInflater)
+
         return binding.root
+
 
     }
 
@@ -44,24 +49,28 @@ class ContactsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
 
         contactsList = arrayListOf()
+        alphabetsList = arrayListOf()
 
         contactProvider = ContactProvider(requireContext().contentResolver)
-        initRecyclerView()
-        initViewModel()
         checkForContactPermission()
+        initViewModel()
+
+        initRecyclerViews()
 
         binding.edtSearch.doOnTextChanged { text, _, _, _ ->
             val query = text.toString().lowercase(Locale.getDefault())
             filterWithQuery(query)
         }
+
+
     }
 
     private fun filterWithQuery(query: String) {
         if (query.isNotEmpty()) {
             val filteredList: List<ContactDataTransfer> = onFilterChanged(query)
-            contactAdapter.submitList(filteredList)
+            contactAdapter.updateList(filteredList)
         } else if (query.isEmpty()) {
-            contactAdapter.submitList(contactsList)
+            contactAdapter.updateList(contactsList)
         }
     }
 
@@ -121,11 +130,6 @@ class ContactsFragment : Fragment() {
         }
     }
 
-    private fun initRecyclerView() {
-        contactAdapter = ContactsAdapter()
-        binding.rvContacts.adapter = contactAdapter
-        binding.rvContacts.layoutManager = LinearLayoutManager(requireContext())
-    }
 
     private fun initViewModel(): ContactsViewModel {
         val application = requireNotNull(this.activity).application
@@ -140,11 +144,75 @@ class ContactsFragment : Fragment() {
     private fun observe(viewModel: ContactsViewModel) {
         viewModel.allContacts.observe(
             viewLifecycleOwner
-        ) { list ->
-            list?.let {
-                contactsList = it
-                contactAdapter.submitList(it)
+        ) {
+            it.let { it1 ->
+                contactsList = it1
+                contactAdapter.updateList(it1)
             }
         }
     }
+
+//    private fun contactFirstLetterNotExist(it: List<ContactDataTransfer>) =
+//
+//        !alphabetsList.containsAll(it.groupBy {
+//            it.name.first().uppercaseChar()
+//        }.map {
+//            it.key
+//        })
+
+//    private fun getContactFirstCharacter(it: List<ContactDataTransfer>) {
+//
+//        alphabetsList.addAll(it.groupBy { it2 ->
+//
+//            it2.name.first().uppercaseChar()
+//
+//        }.map { it1 ->
+//            it1.key
+//        }
+//        )
+//        alphabetAdapter = AlphabetAdapter(alphabetsList,requireContext(),this)
+//        binding.rvAlphabets.layoutManager = LinearLayoutManager(requireContext())
+//        binding.rvAlphabets.adapter = alphabetAdapter
+//
+//    }
+
+
+    private fun initRecyclerViews() {
+        contactAdapter = ContactsAdapter()
+
+        with(binding) {
+            rvContacts.layoutManager = LinearLayoutManager(requireContext())
+            rvContacts.adapter = contactAdapter
+            rvContacts.setIndexTextSize(12)
+            rvContacts.setIndexBarTextColor("#000000")
+            rvContacts.setIndexBarColor("#cdced2")
+            rvContacts.setIndexbarHighLateTextColor("#FF4081")
+            rvContacts.setIndexBarHighLateTextVisibility(true)
+            rvContacts.setIndexBarTransparentValue(1.0.toFloat())
+
+        }
+        contactAdapter.setOnItemClickListener(object : ContactsAdapter.OnItemClickListener{
+            override fun onImageClicked(imgUrl: String) {
+                Toast.makeText(requireContext(), "imageClicked", Toast.LENGTH_SHORT).show()
+
+            }
+
+        })
+    }
+
+
+
+
+//    override fun onAlphabetClicked(alphabet: Char) {
+//
+//        Log.i("MVS", alphabet + "")
+//        Log.i("MVS", contactsList.toString())
+//        val data = contactsList.indexOfFirst {
+//            it.name.startsWith(alphabet, ignoreCase = true)
+//        }
+//        val layoutManager: LinearLayoutManager =
+//            binding.rvContacts.layoutManager as LinearLayoutManager
+//        layoutManager.scrollToPositionWithOffset(data, 0)
+//    }
+
 }

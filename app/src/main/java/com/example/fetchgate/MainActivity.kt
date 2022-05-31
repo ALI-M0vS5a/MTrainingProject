@@ -122,6 +122,13 @@ class MainActivity : AppCompatActivity() {
                     }
                     drawer.close()
                 }
+                R.id.homeAuthFragment -> {
+                    if(i() == R.id.overviewFragment){
+                        navController().navigate(
+                            R.id.action_overviewFragment_to_homeAuthFragment
+                        )
+                    }
+                }
             }
             true
         }
@@ -135,4 +142,5 @@ class MainActivity : AppCompatActivity() {
 //        val navController = this.findNavController(R.id.nav_host_fragment)
 //        return navController.navigateUp()
 //    }
+
 }

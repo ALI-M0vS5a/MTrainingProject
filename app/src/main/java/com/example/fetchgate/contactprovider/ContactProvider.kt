@@ -9,6 +9,7 @@ import android.util.Log
 import com.example.fetchgate.fragments.ContactsViewModel
 import com.example.fetchgate.network.ContactDataTransfer
 
+
 class ContactProvider(private val contentResolver: ContentResolver) {
     companion object {
         val fieldList = arrayOf(
@@ -45,6 +46,7 @@ class ContactProvider(private val contentResolver: ContentResolver) {
                         contactId =
                             c.getString(c.getColumnIndex(ContactsContract.CommonDataKinds.Phone.CONTACT_ID))
                         val m = ContactDataTransfer(contactId.toInt(), name, phone)
+
                         contactsViewModel.addContacts(m)
                     }
                 } catch (e: Exception) {

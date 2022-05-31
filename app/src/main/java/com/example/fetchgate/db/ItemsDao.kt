@@ -4,6 +4,7 @@ import androidx.lifecycle.LiveData
 import androidx.room.*
 import com.example.fetchgate.network.Add
 import com.example.fetchgate.network.ContactDataTransfer
+
 import com.example.fetchgate.network.Notifications
 
 @Dao

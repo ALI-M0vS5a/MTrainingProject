@@ -1,54 +1,48 @@
 package com.example.fetchgate.adapter
 
+import android.annotation.SuppressLint
+import android.graphics.Color
 import android.view.LayoutInflater
 import android.view.ViewGroup
 import android.widget.SectionIndexer
-import androidx.recyclerview.widget.DiffUtil
-import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
-import com.bumptech.glide.Glide
-import com.example.fetchgate.R
+import com.amulyakhare.textdrawable.TextDrawable
 import com.example.fetchgate.databinding.ContactsLayoutBinding
 import com.example.fetchgate.network.ContactDataTransfer
 import java.util.*
-import kotlin.collections.ArrayList
+
 
 class ContactsAdapter :
-    ListAdapter<ContactDataTransfer, ContactsAdapter.ContactHolder>(DIFF_ITEM_CALLBACK),
-    SectionIndexer {
+    RecyclerView.Adapter<ContactsAdapter.ContactHolder>(), SectionIndexer {
 
-    private val mDataArray: List<String>? = null
-    private var mSectionPositions: ArrayList<Int>? = null
+    private lateinit var mListener: OnItemClickListener
 
-    companion object {
-        val DIFF_ITEM_CALLBACK = object : DiffUtil.ItemCallback<ContactDataTransfer>() {
-            override fun areItemsTheSame(
-                oldItem: ContactDataTransfer,
-                newItem: ContactDataTransfer
-            ): Boolean {
-                return oldItem.name == newItem.name
-            }
-
-            override fun areContentsTheSame(
-                oldItem: ContactDataTransfer,
-                newItem: ContactDataTransfer
-            ): Boolean {
-                return oldItem == newItem
-            }
-
-        }
+    interface OnItemClickListener{
+        fun onImageClicked(imgUrl: String)
     }
+    fun setOnItemClickListener(listener: OnItemClickListener){
+        this.mListener = listener
+    }
+    private var contacts = ArrayList<ContactDataTransfer>()
+
+    private var mSectionPositions: ArrayList<Int>? = null
 
     class ContactHolder(val binding: ContactsLayoutBinding) :
         RecyclerView.ViewHolder(binding.root) {
         fun bind(contacts: ContactDataTransfer) {
             with(binding) {
-                tvName.text = contacts.name.toString()
-                tvNumber.text = contacts.number.toString()
-
-                Glide.with(itemView.context)
-                    .load(R.drawable.ic_contact)
-                    .into(ivPerson)
+                contactName.text = contacts.name
+                contactNumber.text = contacts.number
+                val letters = contacts.name.split(" ").toList()
+                if (letters.size >= 2) {
+                    val drawable = TextDrawable.builder()
+                        .buildRect(letters[0].first().toString() + letters[1].first(), Color.LTGRAY)
+                    contactTmb.setImageDrawable(drawable)
+                } else {
+                    val drawable = TextDrawable.builder()
+                        .buildRect(letters[0].first().toString(), Color.LTGRAY)
+                    contactTmb.setImageDrawable(drawable)
+                }
             }
         }
     }
@@ -63,16 +57,31 @@ class ContactsAdapter :
         )
     }
 
-    override fun onBindViewHolder(holder: ContactHolder, position: Int) {
-        holder.bind(getItem(position))
+    @SuppressLint("NotifyDataSetChanged")
+    fun updateList(newList: List<ContactDataTransfer>) {
+        contacts.clear()
+        contacts.addAll(newList)
+        notifyDataSetChanged()
     }
-    override fun getSections(): Array<out Any> {
-        val sections: MutableList<String> = ArrayList(26)
-        mSectionPositions = ArrayList(26)
+
+    override fun onBindViewHolder(holder: ContactHolder, position: Int) {
+        holder.bind(contacts[position])
+        getItemId(position).let {
+            holder.binding.contactTmb.setOnClickListener {
+                mListener.onImageClicked(it.toString())
+            }
+        }
+    }
+
+
+    override fun getSections(): Array<out Any?> {
+        val sections: MutableList<String> = ArrayList()
+        mSectionPositions = ArrayList()
         var i = 0
-        val size = mDataArray!!.size
+        val size = contacts.size
         while (i < size) {
-            val section = mDataArray[i][0].toString().uppercase(Locale.getDefault())
+            val section: String =
+                java.lang.String.valueOf(contacts[i].name.first()).uppercase(Locale.getDefault())
             if (!sections.contains(section)) {
                 sections.add(section)
                 mSectionPositions!!.add(i)
@@ -82,11 +91,16 @@ class ContactsAdapter :
         return sections.toTypedArray()
     }
 
-    override fun getPositionForSection(p0: Int): Int {
-       return mSectionPositions!![p0]
+
+    override fun getPositionForSection(i: Int): Int {
+        return mSectionPositions!![i]
     }
 
-    override fun getSectionForPosition(p0: Int): Int {
+    override fun getSectionForPosition(i: Int): Int {
         return 0
+    }
+
+    override fun getItemCount(): Int {
+        return contacts.size
     }
 }

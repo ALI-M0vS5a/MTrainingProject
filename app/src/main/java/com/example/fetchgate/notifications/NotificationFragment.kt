@@ -21,6 +21,7 @@ import com.example.fetchgate.utils.message1
 import com.example.fetchgate.utils.notificationTitle
 import com.google.android.material.snackbar.Snackbar
 import java.util.*
+import kotlin.collections.ArrayList
 
 
 class NotificationFragment : Fragment() {

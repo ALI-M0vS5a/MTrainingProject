@@ -1,7 +1,6 @@
 package com.example.fetchgate.network
 
-import retrofit2.http.GET
-import retrofit2.http.Query
+import retrofit2.http.*
 
 interface ApiService {
     @GET("repos")
@@ -9,4 +8,11 @@ interface ApiService {
         @Query("page") query: Int
     ): List<Result>
 
+
+    @FormUrlEncoded
+    @POST("login.php")
+    suspend fun login(
+        @Field("email") email: String,
+        @Field("password") password: String
+    ) : LoginResponse
 }

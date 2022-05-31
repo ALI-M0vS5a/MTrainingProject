@@ -13,6 +13,9 @@
         <action
             android:id="@+id/action_authFragment_to_languageFragment"
             app:destination="@id/languageFragment" />
+        <action
+            android:id="@+id/action_authFragment_to_apiAuthenticationFragment"
+            app:destination="@id/apiAuthenticationLoginFragment" />
     </fragment>
     <fragment
         android:id="@+id/languageFragment"
@@ -23,5 +26,19 @@
             android:id="@+id/action_languageFragment_to_authFragment"
             app:destination="@id/authFragment" />
     </fragment>
+    <fragment
+        android:id="@+id/apiAuthenticationLoginFragment"
+        android:name="com.example.fetchgate.language.ApiAuthenticationLoginFragment"
+        android:label="fragment_api_authentication"
+        tools:layout="@layout/fragment_api_authentication_login" >
+        <action
+            android:id="@+id/action_apiAuthenticationLoginFragment_to_apiAuthenticationRegisterFragment"
+            app:destination="@id/apiAuthenticationRegisterFragment" />
+    </fragment>
+    <fragment
+        android:id="@+id/apiAuthenticationRegisterFragment"
+        android:name="com.example.fetchgate.language.ApiAuthenticationRegisterFragment"
+        android:label="fragment_api_authentication_register"
+        tools:layout="@layout/fragment_api_authentication_register" />
 
 </navigation>

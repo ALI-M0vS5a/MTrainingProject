@@ -15,4 +15,7 @@
     <color name="black_bg">#0d0c0b</color>
     <color name="colorOnPrimary">#337C7B7E</color>
     <color name="colorWhite">#FFFFFF</color>
+    <color name="color_primary">#FFF57C00</color>
+    <color name="theme_dark_background_color">@color/md_grey_800</color>
+    <color name="md_grey_800">#424242</color>
 </resources>

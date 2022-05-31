@@ -51,6 +51,9 @@ class AuthFragment : Fragment() {
         binding.signInButton.setOnClickListener {
             signIn()
         }
+        binding.AuthenticationButton.setOnClickListener {
+            findNavController().navigate(R.id.action_authFragment_to_apiAuthenticationFragment)
+        }
     }
 
     private fun signIn() {

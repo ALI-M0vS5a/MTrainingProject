@@ -1,55 +1,75 @@
 <?xml version="1.0" encoding="utf-8"?>
 
-<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/cardView"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/contact_frame"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:layout_margin="5dp"
+    android:background="?attr/selectableItemBackground"
     android:clickable="true"
-    android:focusable="true"
-    app:cardCornerRadius="8dp"
-    app:cardElevation="8dp">
+    android:focusable="true">
 
-
-    <LinearLayout
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="horizontal">
+        android:layout_height="wrap_content"
+        android:minHeight="60dp"
+        android:paddingStart="2dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="16dp"
+        android:paddingBottom="12dp">
 
-        <ImageView
-            android:id="@+id/iv_person"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
-            android:contentDescription="@string/iv_person_description"
-            tools:srcCompat="@tools:sample/avatars" />
 
-        <LinearLayout
+        <com.google.android.material.imageview.ShapeableImageView
+            android:id="@+id/contact_tmb"
+            android:layout_width="48dp"
+            android:layout_height="48dp"
+            android:layout_marginStart="4dp"
+            android:layout_centerVertical="true"
+            app:civ_border_width="1dp"
+            android:padding="2dp"
+            android:splitMotionEvents="false"
+            android:src="@drawable/ic_person_vector"
+            style="@style/Style.App.circleImageView"
+             />
+        <TextView
+            android:id="@+id/contact_name"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:layout_marginStart="2dp"
-            android:layout_marginBottom="2dp"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@+id/contact_checkbox"
+            android:layout_toEndOf="@+id/contact_tmb"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingStart="8dp"
+            android:paddingEnd="16dp"
+            android:text="@string/john_doe"
+            android:textSize="16sp" />
 
-            <TextView
-                android:id="@+id/tv_name"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="@string/textview"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+        <TextView
+            android:id="@+id/contact_number"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/contact_name"
+            android:layout_alignStart="@+id/contact_name"
+            android:layout_toStartOf="@+id/contact_checkbox"
+            android:layout_toEndOf="@+id/contact_tmb"
+            android:alpha="0.6"
+            android:ellipsize="end"
+            android:maxLines="1"
+            android:paddingStart="8dp"
+            android:paddingEnd="16dp"
+            android:textSize="16sp"
+            tools:text="0123 456 789" />
 
-            <TextView
-                android:id="@+id/tv_number"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="5dp"
-                android:text="@string/textview" />
+        <CheckBox
+            android:id="@+id/contact_checkbox"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:clickable="false"
+            android:gravity="center_vertical"
+            android:visibility="invisible" />
+    </RelativeLayout>
 
-        </LinearLayout>
-
-    </LinearLayout>
-
-</androidx.cardview.widget.CardView>
+</FrameLayout>

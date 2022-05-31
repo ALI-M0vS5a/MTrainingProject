@@ -9,6 +9,9 @@
             android:id="@+id/nav_Settings"
             android:icon="@drawable/ic_baseline_settings_24"
             android:title="@string/settings" />
+        <item
+            android:id="@+id/homeAuthFragment"
+            android:title="@string/authentication"/>
 
     </group>
 </menu>

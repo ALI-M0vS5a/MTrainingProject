@@ -15,14 +15,15 @@
         android:id="@+id/thatFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_handyman_24"
-        android:title="Contacts" />
+        android:title="@string/contacts" />
     <item
         android:id="@+id/otherFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_free_breakfast_24"
-        android:title="Notifications" />
+        android:title="@string/notifications" />
     <item
+        android:id="@+id/datePickerFragment"
         android:enabled="true"
         android:icon="@drawable/ic_baseline_free_breakfast_24"
-        android:title="@string/chat" />
+        android:title="@string/date" />
 </menu>
